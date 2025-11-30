@@ -1,0 +1,39 @@
+﻿<Window x:Name="Okno" x:Class="ShrimpCode.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ShrimpCode"
+        mc:Ignorable="d"
+        Closing="Window_Closing"
+        Title="ShrimpCode" 
+        Width="1000"
+        Height="600">
+        <Window.Resources>
+        <!-- HierarchicalDataTemplate to handle subfolders and files -->
+        <HierarchicalDataTemplate DataType="{x:Type local:FileItem}" ItemsSource="{Binding Children}">
+            <Button Tag="{Binding Info}" Content="{Binding Name}" Margin="5" Click="FurnaceOpen" Background="White"/>
+        </HierarchicalDataTemplate>
+    </Window.Resources>
+    <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch" MaxHeight="1000" MaxWidth="2000" KeyDown="keyDown">
+        <TreeView x:Name="FilesTreeView" Margin="0,27,800,0" Width="0"/>
+        <TextBox Margin="0,27,0,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="TextBox" Name="fileNameTbox" AcceptsReturn="True" AcceptsTab="True" />
+        <Button x:Name="runBtn" Content="Biegać" HorizontalAlignment="Left" Margin="131,0,0,0" VerticalAlignment="Top" Click="runBtn_Click" Width="45"/>
+        <Button x:Name="debugBtn" Content="Odrobaczać" HorizontalAlignment="Left" Margin="181,0,0,0" VerticalAlignment="Top" Click="debugBtn_Click"/>
+
+
+        <Button x:Name="fileBtn" Content="File" VerticalAlignment="Top" HorizontalAlignment="Left" Click="fileBtn_Click" Margin="10,0,0,0" Width="116">
+            <Button.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="New" Click="newBtn_Click" />                    
+                    <MenuItem Header="File" Click="browseBtn_Click" />
+                    <MenuItem Header="Save" Click="saveBtn_Click" />
+                    <MenuItem Header="Save As" Click="saveAsBtn_Click" />
+                    <MenuItem Header="Choose folder" Click="FldButtonClick" />
+                    <Separator />
+                </ContextMenu>
+            </Button.ContextMenu>
+        </Button>
+        <Slider x:Name="DarkSlider" ValueChanged="DarkSlider_ValueChanged" HorizontalAlignment="Left" Margin="270,0,0,0" VerticalAlignment="Top" Width="120" Value="0" IsSnapToTickEnabled="true" Minimum="0" Maximum="255" TickFrequency="1" />
+    </Grid>
+</Window>
